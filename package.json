@@ -1,7 +1,7 @@
 {
-  "name": "modern-npm-package",
+  "name": "bitmask.js",
   "version": "0.0.0-development",
-  "description": "An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format. It can be used in Node.js and browser applications.",
+  "description": "JS/TS wrapper of bitmask-core: the core functionality for the BitMask wallet.",
   "type": "module",
   "exports": {
     ".": {
@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/snyk-labs/modern-npm-package.git"
+    "url": "https://github.com/diba-io/bitmask.js.git"
   },
   "keywords": [
     "npm",
@@ -54,12 +54,18 @@
     "example",
     "demonstration"
   ],
-  "author": "Snyk Labs",
+  "author": "Trevor O'Farrell <trevor@diba.io>",
+  "contributors": [
+    "Trevor O'Farrell <trevor@diba.io>",
+    "Jose Diego Robles <jose@diba.io>",
+    "Hunter Trujillo <hunter@diba.io>",
+    "Francisco Calderón <francisco@diba.io>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/snyk-labs/modern-npm-package/issues"
+    "url": "https://github.com/diba-io/bitmask.js/issues"
   },
-  "homepage": "https://github.com/snyk-labs/modern-npm-package#readme",
+  "homepage": "https://github.com/diba-io/bitmask.js#readme",
   "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",

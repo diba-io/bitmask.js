@@ -208,30 +208,3 @@ export enum Network {
 switchHost(process.env.BITMASK_NODE_HOST || "");
 const network = (Network as any)[process.env.BITCOIN_NETWORK || ""];
 switchNetwork(network);
-
-/* export default {
-  getEncryptedWallet,
-  getMnemonicSeed,
-  saveMnemonicSeed,
-  getWalletData,
-  importAsset,
-  getBlindedUtxo,
-  sendSats,
-  fundVault,
-  getAssetsVault,
-  createAsset,
-  transferAssets,
-  signPsbt,
-  acceptTransfer,
-  getNetwork,
-  getEndpoint,
-  switchNetwork,
-  switchHost,
-  lnCreateWallet,
-  lnAuth,
-  lnCreateInvoice,
-  lnGetBalance,
-  lnGetTxs,
-  lnPayInvoice,
-  lnCheckPayment,
-}; */
