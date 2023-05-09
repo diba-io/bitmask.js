@@ -7,8 +7,5 @@
     "moduleResolution": "NodeNext",
     "outDir": "../lib/esm",
     "declarationDir": "../lib/esm/types"
-  },
-  "ts-node": {
-    "esm": true, // «———— enabling ESM for ts-node   
-  },
+  }
 }

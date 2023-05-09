@@ -2,7 +2,6 @@
   "name": "bitmask.js",
   "version": "0.0.0-development",
   "description": "JS/TS wrapper of bitmask-core: the core functionality for the BitMask wallet.",
-  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -42,17 +41,23 @@
     "url": "https://github.com/diba-io/bitmask.js.git"
   },
   "keywords": [
-    "npm",
-    "javascript",
+    "bitmask",
+    "bitcoin",
+    "wallet",
+    "crypto",
+    "web3",
+    "diba",
+    "bitmask.js",
+    "bitmaskjs",
+    "wasm",
+    "rust",
     "typescript",
-    "esm",
-    "cjs",
-    "nodejs",
-    "commonjs",
-    "ecmascript",
-    "beginner",
-    "example",
-    "demonstration"
+    "lightning",
+    "network",
+    "rgb",
+    "protocol",
+    "satoshi",
+    "carbonado"
   ],
   "author": "Trevor O'Farrell <trevor@diba.io>",
   "contributors": [
@@ -67,10 +72,9 @@
   },
   "homepage": "https://github.com/diba-io/bitmask.js#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.4",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.16.1",
-    "chai": "^4.3.7",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "chai": "^4.3.6",
     "mocha": "^10.2.0",
     "semantic-release": "^19.0.3",
     "ts-node": "^10.9.1",

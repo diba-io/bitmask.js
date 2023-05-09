@@ -1,0 +1,5 @@
+{
+  "extension": ["ts, js"],
+  "spec": "./test/index.spec.ts",
+  "require": ["ts-node/register", "bitmask-core"]
+}

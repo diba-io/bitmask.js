@@ -8,9 +8,9 @@
     "allowJs": true,
     "declaration": true,
     "declarationMap": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "mocha"]
   },
-  "files": ["../src/index.ts", "../src/types.ts"],
-  "include": ["./src", "./scripts"]
 
+  "files": ["../src/index.ts", "../src/types.ts"]
 }
