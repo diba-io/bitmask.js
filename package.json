@@ -1,7 +1,7 @@
 {
   "name": "bitmask.js",
-  "version": "0.0.0-development",
-  "description": "JS/TS wrapper of bitmask-core: the core functionality for the BitMask wallet.",
+  "version": "0.6.0-beta.0",
+  "description": "JS/TS wrapper containing all the functionality needed to access the BitMask wallet core",
   "exports": {
     ".": {
       "import": {
@@ -81,6 +81,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "bitmask-core": "^0.5.2"
+    "bitmask-core": "^0.6.0-beta.5"
   }
 }

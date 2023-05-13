@@ -12,5 +12,12 @@
     "types": ["node", "mocha"]
   },
 
-  "files": ["../src/index.ts", "../src/types.ts"]
+  "files": [
+    "../src/index.ts",
+    "../src/constants.ts",
+    "../src/bitcoin.ts",
+    "../src/rgb.ts",
+    "../src/lightning.ts",
+    "../src/carbonado.ts"
+  ]
 }
