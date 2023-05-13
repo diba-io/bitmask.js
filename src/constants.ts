@@ -22,5 +22,5 @@ export enum Network {
   regtest = "regtest",
 }
 
-const network = (Network as any)[process.env.BITCOIN_NETWORK || ""];
+const network = (process.env.BITCOIN_NETWORK || "") as Network;
 switchNetwork(network);
