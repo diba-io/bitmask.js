@@ -4,13 +4,69 @@
   "description": "JS/TS wrapper containing all the functionality needed to access the BitMask wallet core",
   "exports": {
     ".": {
+      "types": "./lib/cjs/index.d.ts",
       "import": {
-        "types": "./lib/esm/types/index.d.ts",
+        "types": "./lib/esm/index.d.ts",
         "default": "./lib/esm/index.mjs"
       },
       "require": {
-        "types": "./lib/cjs/types/index.d.ts",
+        "types": "./lib/cjs/index.d.ts",
         "default": "./lib/cjs/index.js"
+      }
+    },
+    "./constants": {
+      "types": "./lib/cjs/constants.d.ts",
+      "import": {
+        "types": "./lib/esm/constants.d.ts",
+        "default": "./lib/esm/constants.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/constants.d.ts",
+        "default": "./lib/cjs/constants.js"
+      }
+    },
+    "./bitcoin": {
+      "types": "./lib/cjs/bitcoin.d.ts",
+      "import": {
+        "types": "./lib/esm/bitcoin.d.ts",
+        "default": "./lib/esm/bitcoin.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/bitcoin.d.ts",
+        "default": "./lib/cjs/bitcoin.js"
+      }
+    },
+    "./rgb": {
+      "types": "./lib/cjs/rgb.d.ts",
+      "import": {
+        "types": "./lib/esm/rgb.d.ts",
+        "default": "./lib/esm/rgb.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/rgb.d.ts",
+        "default": "./lib/cjs/rgb.js"
+      }
+    },
+    "./lightning": {
+      "types": "./lib/cjs/lightning.d.ts",
+      "import": {
+        "types": "./lib/esm/lightning.d.ts",
+        "default": "./lib/esm/lightning.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/lightning.d.ts",
+        "default": "./lib/cjs/lightning.js"
+      }
+    },
+    "./carbonado": {
+      "types": "./lib/cjs/carbonado.d.ts",
+      "import": {
+        "types": "./lib/esm/carbonado.d.ts",
+        "default": "./lib/esm/carbonado.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/carbonado.d.ts",
+        "default": "./lib/cjs/carbonado.js"
       }
     }
   },
@@ -22,8 +78,9 @@
   "scripts": {
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && npm run rename:esm",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "rename:esm": "mv lib/esm/index.js lib/esm/index.mjs && mv lib/esm/constants.js lib/esm/constants.mjs && mv lib/esm/bitcoin.js lib/esm/bitcoin.mjs && mv lib/esm/rgb.js lib/esm/rgb.mjs && mv lib/esm/lightning.js lib/esm/lightning.mjs && mv lib/esm/carbonado.js lib/esm/carbonado.mjs",
     "test": "echo 'mocha is a terrible testing framework'",
     "semantic-release": "semantic-release",
     "prepack": "npm run build"
