@@ -41,6 +41,13 @@ export const checkPayment = async (
 // Core type interfaces based on structs defined within the bitmask-core Rust crate:
 // https://github.com/diba-io/bitmask-core/blob/development/src/structs.rs
 
+export interface LnCredentials {
+  login: string;
+  password: string;
+  refreshToken: string;
+  accessToken: string;
+}
+
 // Lndhubx Create wallet endpoint response
 export interface CreateWalletResponse {
   username?: string;
