@@ -80,7 +80,7 @@
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && npm run rename:esm",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "rename:esm": "mv lib/esm/index.js lib/esm/index.mjs && mv lib/esm/constants.js lib/esm/constants.mjs && mv lib/esm/bitcoin.js lib/esm/bitcoin.mjs && mv lib/esm/rgb.js lib/esm/rgb.mjs && mv lib/esm/lightning.js lib/esm/lightning.mjs && mv lib/esm/carbonado.js lib/esm/carbonado.mjs",
+    "rename:esm": "mv lib/esm/index.js index.mjs && mv lib/esm/constants.js constants.mjs && mv lib/esm/bitcoin.js bitcoin.mjs && mv lib/esm/rgb.js rgb.mjs && mv lib/esm/lightning.js lightning.mjs && mv lib/esm/carbonado.js carbonado.mjs",
     "test": "echo 'mocha is a terrible testing framework'",
     "semantic-release": "semantic-release",
     "prepack": "npm run build"
