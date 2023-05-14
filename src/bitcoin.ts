@@ -3,6 +3,8 @@
 
 import * as BMC from "bitmask-core";
 
+export const hashPassword = (password: string) => BMC.hash_password(password);
+
 export const getEncryptedWallet = async (
   password: string,
   encryptedDescriptors: string
@@ -10,28 +12,26 @@ export const getEncryptedWallet = async (
   JSON.parse(await BMC.get_encrypted_wallet(password, encryptedDescriptors));
 
 export const upgradeWallet = async (
-  password: string,
+  hash: string,
   encryptedDescriptors: string,
   seedPassword = ""
 ): Promise<string> =>
   JSON.parse(
-    await BMC.upgrade_wallet(password, encryptedDescriptors, seedPassword)
+    await BMC.upgrade_wallet(hash, encryptedDescriptors, seedPassword)
   );
 
-export const getMnemonicSeed = async (
-  encryptionPassword: string,
+export const newMnemonicSeed = async (
+  hash: string,
   seedPassword: string
 ): Promise<MnemonicSeedData> =>
-  JSON.parse(await BMC.get_mnemonic_seed(encryptionPassword, seedPassword));
+  JSON.parse(await BMC.new_mnemonic_seed(hash, seedPassword));
 
 export const saveMnemonicSeed = async (
   mnemonic: string,
-  encryptionPassword: string,
+  hash: string,
   seedPassword: string
 ): Promise<MnemonicSeedData> =>
-  JSON.parse(
-    await BMC.save_mnemonic_seed(mnemonic, encryptionPassword, seedPassword)
-  );
+  JSON.parse(await BMC.save_mnemonic_seed(mnemonic, hash, seedPassword));
 
 export const getWalletData = async (
   descriptor: string,

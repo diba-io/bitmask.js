@@ -1,35 +1,35 @@
 {
   "name": "bitmask-wallet",
-  "version": "0.6.0-beta.0",
+  "version": "0.6.0-beta.1",
   "description": "JS/TS wrapper containing all the functionality needed to access the BitMask wallet core",
   "exports": {
     ".": {
-      "types": "./lib/cjs/index.d.ts",
+      "types": "./lib/esm/index.d.ts",
       "import": "./lib/esm/index.mjs",
       "require": "./lib/cjs/index.js"
     },
     "./constants": {
-      "types": "./lib/cjs/constants.d.ts",
+      "types": "./lib/esm/constants.d.ts",
       "import": "./lib/esm/constants.mjs",
       "require": "./lib/cjs/constants.js"
     },
     "./bitcoin": {
-      "types": "./lib/cjs/bitcoin.d.ts",
+      "types": "./lib/esm/bitcoin.d.ts",
       "import": "./lib/esm/bitcoin.mjs",
       "require": "./lib/cjs/bitcoin.js"
     },
     "./rgb": {
-      "types": "./lib/cjs/rgb.d.ts",
+      "types": "./lib/esm/rgb.d.ts",
       "import": "./lib/esm/rgb.mjs",
       "require": "./lib/cjs/rgb.js"
     },
     "./lightning": {
-      "types": "./lib/cjs/lightning.d.ts",
+      "types": "./lib/esm/lightning.d.ts",
       "import": "./lib/esm/lightning.mjs",
       "require": "./lib/cjs/lightning.js"
     },
     "./carbonado": {
-      "types": "./lib/cjs/carbonado.d.ts",
+      "types": "./lib/esm/carbonado.d.ts",
       "import": "./lib/esm/carbonado.mjs",
       "require": "./lib/cjs/carbonado.js"
     }
@@ -110,6 +110,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "bitmask-core": "^0.6.0-beta.5"
+    "bitmask-core": "^0.6.0-beta.7"
   }
 }
