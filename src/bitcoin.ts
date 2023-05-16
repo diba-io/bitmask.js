@@ -6,10 +6,10 @@ import * as BMC from "bitmask-core";
 export const hashPassword = (password: string) => BMC.hash_password(password);
 
 export const getEncryptedWallet = async (
-  password: string,
+  hash: string,
   encryptedDescriptors: string
 ): Promise<Vault> =>
-  JSON.parse(await BMC.get_encrypted_wallet(password, encryptedDescriptors));
+  JSON.parse(await BMC.get_encrypted_wallet(hash, encryptedDescriptors));
 
 export const upgradeWallet = async (
   hash: string,
