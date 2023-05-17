@@ -3,6 +3,9 @@
 
 import * as BMC from "bitmask-core";
 
+export const hashPassword = async (password: string): Promise<string> =>
+  BMC.hash_password(password);
+
 export const issueContract = async (
   nostrHexSk: string,
   request: IssueRequest
@@ -93,6 +96,13 @@ export interface ContractFormats {
   armored: string;
 }
 
+export interface GenesisFormats {
+  /// The genesis state (encoded in bech32m)
+  legacy: string;
+  /// The genesis state (encoded in strict)
+  strict: string;
+}
+
 export interface IssueRequest {
   /// The ticker of the asset
   ticker: string;
@@ -131,6 +141,8 @@ export interface IssueResponse {
   precision: number;
   /// The contract state (multiple formats)
   contract: ContractFormats;
+
+  genesis: GenesisFormats;
 }
 
 export interface ImportRequest {
@@ -166,8 +178,8 @@ export interface ImportResponse {
   allocations: AllocationDetail[];
   /// The contract state (multiple formats)
   contract: ContractFormats;
-  /// TODO: Genesis
-  genesis: string;
+  
+  genesis: GenesisFormats;
 }
 
 export interface InvoiceRequest {
