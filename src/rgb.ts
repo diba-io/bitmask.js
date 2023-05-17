@@ -1,7 +1,7 @@
 // Methods meant to work with RGB contracts defined within the web::rgb module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "bitmask-core";
+import * as BMC from "../pkg";
 
 export const hashPassword = async (password: string): Promise<string> =>
   BMC.hash_password(password);
@@ -178,7 +178,7 @@ export interface ImportResponse {
   allocations: AllocationDetail[];
   /// The contract state (multiple formats)
   contract: ContractFormats;
-  
+
   genesis: GenesisFormats;
 }
 

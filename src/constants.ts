@@ -1,7 +1,7 @@
 // Methods meant to work with bitmask-core constants defined within the web::constants module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "bitmask-core";
+import * as BMC from "../pkg";
 
 export const getNetwork = async (): Promise<string> =>
   JSON.parse(await BMC.get_network());

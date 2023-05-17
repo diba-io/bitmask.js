@@ -1,6 +1,6 @@
 {
   "name": "bitmask-wallet",
-  "version": "0.6.0-beta.7",
+  "version": "0.6.0-beta.8",
   "description": "JS/TS wrapper containing all the functionality needed to access the BitMask wallet core",
   "types": "index.d.ts",
   "main": "index.js",
@@ -17,7 +17,10 @@
     "build": "npm run clean && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && npm run rename:esm",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "build:pkg": "cd ../bitmask-core && wasm-pack build --release --target bundler",
     "rename:esm": "cp lib/esm/index.js index.mjs && cp lib/esm/constants.js constants.mjs && cp lib/esm/bitcoin.js bitcoin.mjs && cp lib/esm/rgb.js rgb.mjs && cp lib/esm/lightning.js lightning.mjs && cp lib/esm/carbonado.js carbonado.mjs",
+    "rename:pkg": "mv ../bitmask-core/pkg pkg",
+    "full": "npm run build && npm run build:pkg && npm run rename:pkg",
     "test": "echo 'mocha is a terrible testing framework'",
     "semantic-release": "semantic-release",
     "prepack": "npm run build"

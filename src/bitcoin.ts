@@ -1,7 +1,7 @@
 // Methods meant to work with BDK defined within the web::bitcoin module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "bitmask-core";
+import * as BMC from "../pkg";
 
 export const hashPassword = (password: string) => BMC.hash_password(password);
 
@@ -121,7 +121,7 @@ export interface Transaction {
 
 export interface MnemonicSeedData {
   mnemonic: string;
-  serializedEncryptedMessage: string;
+  encryptedDescriptors: string;
 }
 
 export interface Activity extends Transaction {
