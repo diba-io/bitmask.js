@@ -6,7 +6,7 @@ import * as BMC from "bitmask-core";
 export const getNetwork = async (): Promise<string> =>
   JSON.parse(await BMC.get_network());
 
-export const switchNetwork = async (network: Network): Promise<void> =>
+export const switchNetwork = async (network: string): Promise<void> =>
   BMC.switch_network(network.toString());
 
 export const getEnv = async (key: string): Promise<string> =>
