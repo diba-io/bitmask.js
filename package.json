@@ -1,12 +1,12 @@
 {
   "name": "bitmask-wallet",
-  "version": "0.6.0-beta.11",
+  "version": "0.6.0-beta.12",
   "description": "JS/TS wrapper containing all the functionality needed to access the BitMask wallet core",
   "types": "index.d.ts",
   "main": "index.js",
   "module": "index.js",
   "files": [
-    "lib/**/*",
+    "pkg/*",
     "/*.js",
     "/*.mjs",
     "/*.d.ts",
