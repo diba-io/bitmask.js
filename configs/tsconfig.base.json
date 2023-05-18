@@ -9,7 +9,10 @@
     "declaration": true,
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "mocha"]
+    "types": ["node", "mocha"],
+    "paths": {
+      "bitmask-core": ["./pkg"]
+    }
   },
 
   "files": [

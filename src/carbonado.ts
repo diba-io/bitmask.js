@@ -1,7 +1,7 @@
 // Methods meant to work with Carbonado storage defined within the web::carbonado module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "../pkg";
+import * as BMC from "bitmask-core";
 
 export const store = async (
   nostrHexSk: string,

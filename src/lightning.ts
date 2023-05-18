@@ -1,7 +1,7 @@
 // Methods meant to work with LNDHubX defined within the web::lightning module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "../pkg";
+import * as BMC from "bitmask-core";
 
 export const createWallet = async (
   username: string,
