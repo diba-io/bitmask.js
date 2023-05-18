@@ -1,7 +1,7 @@
 import "mocha";
 import { assert } from "chai";
 
-import { lnCreateWallet } from "../src/index";
+import { lightning } from "../src/index";
 import npmPackage from "../src/index";
 
 describe("NPM Package", () => {
@@ -16,11 +16,11 @@ describe("NPM Package", () => {
 
 describe("lnCreateWallet Function", () => {
   it("should be a function", () => {
-    assert.isFunction(lnCreateWallet);
+    assert.isFunction(lightning.createWallet);
   });
 
   it("should return the lnCreateWallet username", async () => {
-    const actual = await lnCreateWallet("test", "test");
+    const actual = await lightning.createWallet("test", "test");
     assert.equal(actual, { username: "test" });
   });
 });

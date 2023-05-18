@@ -9,8 +9,18 @@
     "declaration": true,
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "mocha"]
+    "types": ["node", "mocha"],
+    "paths": {
+      "pkg": ["../pkg"]
+    }
   },
 
-  "files": ["../src/index.ts", "../src/types.ts"]
+  "files": [
+    "../src/index.ts",
+    "../src/constants.ts",
+    "../src/bitcoin.ts",
+    "../src/rgb.ts",
+    "../src/lightning.ts",
+    "../src/carbonado.ts"
+  ]
 }
