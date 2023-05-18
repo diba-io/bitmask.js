@@ -10,6 +10,9 @@
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
     "types": ["node", "mocha"],
+    "paths": {
+      "pkg": ["../pkg"]
+    }
   },
 
   "files": [
