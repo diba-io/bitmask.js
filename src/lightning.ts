@@ -1,7 +1,7 @@
 // Methods meant to work with LNDHubX defined within the web::lightning module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "./pkg";
+import * as BMC from "bitmask-core";
 
 export const createWallet = async (
   username: string,
@@ -37,6 +37,16 @@ export const checkPayment = async (
   paymentHash: string
 ): Promise<CheckPaymentResponse> =>
   JSON.parse(await BMC.check_payment(paymentHash));
+
+export const swapBtcLn = async (token: string): Promise<SwapBtcLnResponse> =>
+  JSON.parse(await BMC.swap_btc_ln(token));
+
+export const swapLnBtc = async (
+  address: string,
+  amount: bigint,
+  token: string
+): Promise<SwapLnBtcResponse> =>
+  JSON.parse(await BMC.swap_ln_btc(address, amount, token));
 
 // Core type interfaces based on structs defined within the bitmask-core Rust crate:
 // https://github.com/diba-io/bitmask-core/blob/development/src/structs.rs
@@ -140,4 +150,16 @@ export interface PayInvoiceResponse {
 // Lndhubx Check payment response
 export interface CheckPaymentResponse {
   paid: boolean;
+}
+
+export interface SwapBtcLnResponse {
+  address: string;
+  commitment: string;
+  signature: string;
+  secret_access_key: string;
+}
+
+export interface SwapLnBtcResponse {
+  bolt11_invoice: string;
+  fee_sats: number;
 }

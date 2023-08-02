@@ -1,10 +1,7 @@
 // Methods meant to work with RGB contracts defined within the web::rgb module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "./pkg";
-
-export const hashPassword = async (password: string): Promise<string> =>
-  BMC.hash_password(password);
+import * as BMC from "bitmask-core";
 
 export const issueContract = async (
   nostrHexSk: string,
@@ -48,7 +45,9 @@ export const acceptTransfer = async (
 ): Promise<AcceptResponse> =>
   JSON.parse(await BMC.accept_transfer(nostrHexSk, request));
 
-export const listContracts = async (nostrHexSk: string): Promise<Contract[]> =>
+export const listContracts = async (
+  nostrHexSk: string
+): Promise<ContractsResponse> =>
   JSON.parse(await BMC.list_contracts(nostrHexSk));
 
 export const listInterfaces = async (
@@ -60,11 +59,11 @@ export const listSchemas = async (
   nostrHexSk: string
 ): Promise<SchemasResponse> => JSON.parse(await BMC.list_schemas(nostrHexSk));
 
-export const watcher = async (
+export const createWatcher = async (
   nostrHexSk: string,
   request: WatcherRequest
 ): Promise<WatcherResponse> =>
-  JSON.parse(await BMC.watcher(nostrHexSk, request));
+  JSON.parse(await BMC.create_watcher(nostrHexSk, request));
 
 export const watcherDetails = async (
   nostrHexSk: string,
@@ -74,15 +73,31 @@ export const watcherDetails = async (
 
 export const watcherNextAddress = async (
   nostrHexSk: string,
-  name: string
+  name: string,
+  iface: string
 ): Promise<NextAddressResponse> =>
-  JSON.parse(await BMC.watcher_next_address(nostrHexSk, name));
+  JSON.parse(await BMC.watcher_next_address(nostrHexSk, name, iface));
 
 export const watcherWatcherNextUtxo = async (
   nostrHexSk: string,
-  name: string
+  name: string,
+  iface: string
 ): Promise<NextUtxoResponse> =>
-  JSON.parse(await BMC.watcher_next_utxo(nostrHexSk, name));
+  JSON.parse(await BMC.watcher_next_utxo(nostrHexSk, name, iface));
+
+export const watcherAddress = async (
+  nostrHexSk: string,
+  name: string,
+  address: string
+): Promise<WatcherUtxoResponse> =>
+  JSON.parse(await BMC.watcher_address(nostrHexSk, name, address));
+
+export const watcherUtxo = async (
+  nostrHexSk: string,
+  name: string,
+  utxo: string
+): Promise<WatcherUtxoResponse> =>
+  JSON.parse(await BMC.watcher_utxo(nostrHexSk, name, utxo));
 
 // Core type interfaces based on structs defined within the bitmask-core Rust crate:
 // https://github.com/diba-io/bitmask-core/blob/development/src/structs.rs
@@ -103,6 +118,11 @@ export interface GenesisFormats {
   strict: string;
 }
 
+export interface IssueMetadata {
+  uda?: MediaInfo[];
+  collectible?: NewCollectible[];
+}
+
 export interface IssueRequest {
   /// The ticker of the asset
   ticker: string;
@@ -118,6 +138,41 @@ export interface IssueRequest {
   seal: string;
   /// The name of the iface (ex: RGB20)
   iface: string;
+  /// contract metadata (only RGB21/UDA)
+  meta?: IssueMetadata;
+}
+
+export interface NewCollectible {
+  /// The ticker of the asset
+  ticker: string;
+  /// Name of the asset
+  name: string;
+  /// Description of the asset
+  description: string;
+  /// attachments and media
+  media: MediaInfo[];
+}
+
+export interface UDADetail {
+  /// the token index of the uda
+  tokenIndex: number;
+  /// The ticker of the uda
+  ticker: string;
+  /// Name of the uda
+  name: string;
+  /// Description of the uda
+  description: string;
+  /// Media of the uda
+  media: MediaInfo[];
+  /// The user contract balance
+  balance: bigint;
+  /// The contract allocations
+  allocations: AllocationDetail[];
+}
+
+export interface ContractMetadata {
+  uda?: UDADetail;
+  collectible?: UDADetail[];
 }
 
 export interface IssueResponse {
@@ -141,20 +196,23 @@ export interface IssueResponse {
   precision: number;
   /// The contract state (multiple formats)
   contract: ContractFormats;
-
+  /// Genesis
   genesis: GenesisFormats;
+  /// attachments and media (only RGB21/UDA)
+  meta?: ContractMetadata;
 }
 
 export interface ImportRequest {
   /// The type data
   /// enum ImportType {
-  ///     "Contract"
+  ///     "contract"
   /// }
   import: string;
   /// The payload data (in hexadecimal)
   data: string;
 }
 
+// In structs.rs this is called ContractResponse
 export interface ImportResponse {
   /// The contract id
   contractId: string;
@@ -171,15 +229,24 @@ export interface ImportResponse {
   /// Amount of the asset
   supply: bigint;
   /// Precision of the asset
-  precision: string;
+  precision: number;
   /// The user contract balance
   balance: bigint;
   /// The contract allocations
   allocations: AllocationDetail[];
   /// The contract state (multiple formats)
   contract: ContractFormats;
-
+  /// Genesis
   genesis: GenesisFormats;
+  /// attachments and media (only RGB21/UDA)
+  meta?: ContractMetadata;
+}
+
+export interface MediaInfo {
+  /// Mime Type of the media
+  type: string;
+  /// Source (aka. hyperlink) of the media
+  source: string;
 }
 
 export interface InvoiceRequest {
@@ -191,6 +258,8 @@ export interface InvoiceRequest {
   amount: bigint;
   /// UTXO or Blinded UTXO
   seal: string;
+  /// Query parameters
+  params: { [key: string]: string };
 }
 
 export interface InvoiceResponse {
@@ -232,6 +301,8 @@ export interface SignPsbtRequest {
 export interface SignPsbtResponse {
   /// PSBT is signed?
   sign: boolean;
+  /// TX id
+  txid: string;
 }
 
 export interface RgbTransferRequest {
@@ -304,6 +375,8 @@ export interface WatcherRequest {
   name: string;
   /// The xpub will be watch
   xpub: string;
+  /// Force recreate
+  force: boolean;
 }
 
 export interface WatcherResponse {
@@ -325,6 +398,10 @@ export interface WatcherDetailResponse {
   contracts: WatcherDetail[];
 }
 
+export interface WatcherUtxoResponse {
+  utxos: string[];
+}
+
 export interface WatcherDetail {
   /// Contract ID
   contractId: string;
@@ -332,11 +409,18 @@ export interface WatcherDetail {
   allocations: AllocationDetail[];
 }
 
+export interface UDAPosition {
+  tokenIndex: number;
+  fraction: bigint;
+}
+
+export type AllocationValue = bigint | UDAPosition;
+
 export interface AllocationDetail {
   /// Anchored UTXO
   utxo: string;
   /// Asset Value
-  value: bigint;
+  value: AllocationValue;
   /// Derivation Path
   derivation: string;
   /// Derivation Path

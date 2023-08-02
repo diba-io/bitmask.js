@@ -1,15 +1,15 @@
 // Methods meant to work with BDK defined within the web::bitcoin module from bitmask-core:
 // https://github.com/diba-io/bitmask-core/blob/development/src/web.rs
 
-import * as BMC from "./pkg";
+import * as BMC from "bitmask-core";
 
 export const hashPassword = (password: string) => BMC.hash_password(password);
 
-export const getEncryptedWallet = async (
+export const decryptWallet = async (
   hash: string,
   encryptedDescriptors: string
 ): Promise<Vault> =>
-  JSON.parse(await BMC.get_encrypted_wallet(hash, encryptedDescriptors));
+  JSON.parse(await BMC.decrypt_wallet(hash, encryptedDescriptors));
 
 export const upgradeWallet = async (
   hash: string,
@@ -20,18 +20,19 @@ export const upgradeWallet = async (
     await BMC.upgrade_wallet(hash, encryptedDescriptors, seedPassword)
   );
 
-export const newMnemonicSeed = async (
+export const syncWallets = async (): Promise<void> => BMC.sync_wallets();
+
+export const newWallet = async (
   hash: string,
   seedPassword: string
-): Promise<MnemonicSeedData> =>
-  JSON.parse(await BMC.new_mnemonic_seed(hash, seedPassword));
+): Promise<string> => JSON.parse(await BMC.new_wallet(hash, seedPassword));
 
-export const saveMnemonicSeed = async (
+export const encryptWallet = async (
   mnemonic: string,
   hash: string,
   seedPassword: string
-): Promise<MnemonicSeedData> =>
-  JSON.parse(await BMC.save_mnemonic_seed(mnemonic, hash, seedPassword));
+): Promise<string> =>
+  JSON.parse(await BMC.encrypt_wallet(mnemonic, hash, seedPassword));
 
 export const getWalletData = async (
   descriptor: string,
@@ -48,6 +49,16 @@ export const sendSats = async (
 ): Promise<TransactionData> =>
   JSON.parse(
     await BMC.send_sats(descriptor, changeDescriptor, address, amount, feeRate)
+  );
+
+export const drainWallet = async (
+  destination: string,
+  descriptor: string,
+  changeDescriptor?: string,
+  feeRate?: number
+): Promise<TransactionData> =>
+  JSON.parse(
+    await BMC.drain_wallet(destination, descriptor, changeDescriptor, feeRate)
   );
 
 export const fundVault = async (
@@ -119,11 +130,6 @@ export interface Transaction {
   note?: string;
 }
 
-export interface MnemonicSeedData {
-  mnemonic: string;
-  encryptedDescriptors: string;
-}
-
 export interface Activity extends Transaction {
   id: string;
   date: number;
@@ -179,8 +185,8 @@ export interface WalletTransaction {
 
 export interface WalletBalance {
   immature: number;
-  trusted_pending: number;
-  untrusted_pending: number;
+  trustedPending: number;
+  untrustedPending: number;
   confirmed: number;
 }
 
@@ -194,8 +200,8 @@ export interface WalletData {
 }
 
 export interface FundVaultDetails {
-  assets_output?: string;
-  assets_change_output?: string;
-  udas_output?: string;
-  udas_change_output?: string;
+  assetsOutput?: string;
+  assetsChangeOutput?: string;
+  udasOutput?: string;
+  udasChangeOutput?: string;
 }
