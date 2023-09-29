@@ -72,9 +72,9 @@
   },
   "homepage": "https://github.com/diba-io/bitmask.js#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.3",
+    "@types/chai": "^4.3.6",
     "@types/mocha": "^9.1.1",
-    "chai": "^4.3.6",
+    "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "semantic-release": "^19.0.3",
     "ts-node": "^10.9.1",
